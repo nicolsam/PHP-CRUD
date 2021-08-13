@@ -1,4 +1,4 @@
-<main>
+<main class="p-2">
     <section>
         <a href="cadastrar.php">
             <button class="btn btn-success">Nova vaga</button>
