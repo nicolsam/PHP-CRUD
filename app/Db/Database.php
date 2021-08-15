@@ -3,6 +3,7 @@
 namespace App\Db;
 
 use \PDO;
+use \App\Common\Environment;
 
 class Database {   
 
@@ -65,6 +66,29 @@ class Database {
      * @return  [type]  [return description]
      */
     private function setConnection() {
+        try {
+            $this->setAttributes();
 
+            echo $this->HOST;
+            echo $this->NAME;
+            echo $this->USERNAME;
+            echo $this->PASSWORD;
+
+            $this->connection = new PDO('mysql:host='.$this->HOST.';dbaname='.$this->NAME, $this->USERNAME, $this->PASSWORD);
+            
+            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        } catch(Exception $error) {
+            echo 'Erro genérico: ' . $error->getMessage();
+        } catch(PDOException $error) {
+            echo 'Erro no Banco de dados: ' . $error->getMessage();
+        }
+    }
+
+    private function setAttributes() {
+        $this->HOST     = getenv('HOST');
+        $this->NAME     = getenv('NAME');
+        $this->USERNAME = getenv('USERNAME');
+        $this->PASSWORD = getenv('PASSWORD');
     }
 }
