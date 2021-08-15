@@ -3,6 +3,8 @@
 namespace App\Db;
 
 use \PDO;
+use \PDO\PDOException;
+
 use \App\Common\Environment;
 
 class Database {   
@@ -61,20 +63,23 @@ class Database {
     }
 
     /**
+     * Método responsável por definir os atributos da classe Dabatase
+     */
+    private function setAttributes() {
+        $this->HOST     = getenv('HOST');
+        $this->NAME     = getenv('NAME');
+        $this->USERNAME = getenv('USERNAME');
+        $this->PASSWORD = getenv('PASSWORD');
+    }
+
+    /**
      * Método responsável por criar uma conexão com o banco de dados
-     *
-     * @return  [type]  [return description]
      */
     private function setConnection() {
         try {
             $this->setAttributes();
 
-            echo $this->HOST;
-            echo $this->NAME;
-            echo $this->USERNAME;
-            echo $this->PASSWORD;
-
-            $this->connection = new PDO('mysql:host='.$this->HOST.';dbaname='.$this->NAME, $this->USERNAME, $this->PASSWORD);
+            $this->connection = new PDO('mysql:host='.$this->HOST.';dbname='.$this->NAME, $this->USERNAME, $this->PASSWORD);
             
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -85,10 +90,47 @@ class Database {
         }
     }
 
-    private function setAttributes() {
-        $this->HOST     = getenv('HOST');
-        $this->NAME     = getenv('NAME');
-        $this->USERNAME = getenv('USERNAME');
-        $this->PASSWORD = getenv('PASSWORD');
+    /**
+     * Método responsável por executar queries dentro do Banco de Dados
+     *
+     * @param   string  $query
+     * @param   array $params 
+     *
+     * @return  PDOStatement
+     */
+    public function execute($query, $params = []) {
+        try {
+            $statement = $this->connection->prepare($query);
+            $statement->execute($params);
+
+            return $statement;
+
+        } catch(Exception $error) {
+            echo 'Erro genérico: ' . $error->getMessage();
+        } catch(PDOException $error) {
+            echo 'Erro no Banco de dados: ' . $error->getMessage();
+        }
+    }
+
+    /**
+     * Método responsável por inserir dados no Banco de Dados
+     *
+     * @param   array  $values [ $field => value ]
+     *
+     * @return  integer ID INSERIDO
+     */
+    public function insert($values) {
+        // Dados da query
+        $fields = array_keys($values);
+        $binds = array_pad([], count($fields), '?');
+        
+        // Montar query
+        $query = 'INSERT INTO '.$this->table.' ('.implode(',', $fields).') VALUES ('.implode(',', $binds).')';
+
+        // Executar INSERT
+        $this->execute($query, array_values($values));
+
+        // Retorna o ID inserido
+        return $this->connection->lastInsertId();
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use \App\Db\Database;
+
 class Vaga {
     /**
      * Indentificador único da vaga
@@ -37,5 +39,31 @@ class Vaga {
      * @var string
      */
     public $data;
+
+    /**
+     * Método responsável por cadastrar uma vaga no banco de dados
+     *
+     * @return  boolean
+     */
+    public function cadastrarVaga() {
+        // Definir a data
+        $this->data = date('Y-m-d H:i:s');
+
+        // Inserir a vaga no banco de dados
+        $obDatabase = new Database('vagas');
+        $this->id = $obDatabase->insert([
+                                'titulo'    => $this->titulo,
+                                'descricao' => $this->descricao,
+                                'status'    => $this->status,
+                                'data'      => $this->data,
+                            ]);
+
+        echo '<pre>';
+        print_r($this);
+        echo '</pre>';
+        exit;
+
+        // Retonar sucesso caso a operação seja executada com sucesso
+    }
 
 }
