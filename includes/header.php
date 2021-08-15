@@ -11,8 +11,8 @@
   </head>
   <body>
     <div class="p-2">
-      <header class="bg-dark">
-        <h1>qTrabalhos</h1>
+      <header class="bg-dark text-light p-2">
+        <h1 class="fw-bold">qTrabalhos</h1>
         <p>Sua vaga te espera!</p>
       </header>
     </div>
