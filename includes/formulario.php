@@ -1,7 +1,7 @@
 <main class="p-2">
     <section class="mb-2">
         <a href="index.php">
-            <button class="btn btn-success">Voltar</button>
+            <button class="btn btn-success">Home</button>
         </a>
     </section>
 
@@ -18,7 +18,7 @@
         </div>
         <div>
             <div class="form-check form-check-inline mb-3">
-                <input type="radio" class="form-check-input" name="vaga-status" value="sim" id="vaga-ativa" checked>
+                <input type="radio" class="form-check-input" name="status" value="sim" id="vaga-ativa" checked>
                 <label class="form-check-label" for="vaga-ativa">Ativo</label>
             </div>
             <div class="form-check form-check-inline">
