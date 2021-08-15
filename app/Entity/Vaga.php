@@ -57,13 +57,9 @@ class Vaga {
                                 'status'    => $this->status,
                                 'data'      => $this->data,
                             ]);
-
-        echo '<pre>';
-        print_r($this);
-        echo '</pre>';
-        exit;
-
+                            
         // Retonar sucesso caso a operação seja executada com sucesso
+        return true;
     }
 
 }
