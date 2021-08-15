@@ -18,6 +18,8 @@ if(isset($_POST['titulo'], $_POST['descricao'], $_POST['status'])) {
 
     $obVaga->cadastrarVaga();
     
+    header('Location: index.php?status=success');
+    exit;
     // echo '<pre>';
     // print_r($obVaga);
     // echo '</pre>'; exit;
