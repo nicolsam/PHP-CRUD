@@ -79,6 +79,11 @@ class Database {
         try {
             $this->setAttributes();
 
+            echo $this->HOST;
+            echo $this->NAME;
+            echo $this->USERNAME;
+            echo $this->PASSWORD;
+
             $this->connection = new PDO('mysql:host='.$this->HOST.';dbname='.$this->NAME, $this->USERNAME, $this->PASSWORD);
             
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -132,5 +137,28 @@ class Database {
 
         // Retorna o ID inserido
         return $this->connection->lastInsertId();
+    }
+
+    /**
+     * Método responsável por executar uma consulta no banco
+     *
+     * @param   string  $where
+     * @param   string  $order  
+     * @param   string  $limit  
+     * @param   string  $fields
+     * 
+     * @return  PDOStatement     
+     */
+    public function select($where = null, $order = null, $limit = null, $fields = '*') {
+        // Dados da query
+        $where = strlen($where) ? 'WHERE ' . $where : '';
+        $order = strlen($order) ? 'ORDER BY ' . $order : '';
+        $limit = strlen($limit) ? 'LIMIT ' . $limit : '';
+
+        // Preparar Query
+        $query = 'SELECT ' . $fields . ' FROM ' . $this->table . ' ' . $where . ' ' . $order . ' ' . $limit;
+
+        // Exectuar a Query
+        return $this->execute($query);
     }
 }
