@@ -47,7 +47,7 @@ class Vaga {
      *
      * @return  boolean
      */
-    public function cadastrarVaga() {
+    public function cadastrar() {
         // Definir a data
         $this->data = date('Y-m-d H:i:s');
 
@@ -76,6 +76,15 @@ class Vaga {
                                                                     'status'    => $this->status,
                                                                     'data'      => $this->data,
                                                                 ]);
+    }
+
+    /**
+     * Método responsável por excluir a vaga do banco
+     *
+     * @return  boolean
+     */
+    public function excluir() {
+        return (new Database('vagas'))->delete('id =' . $this->id);
     }
 
     /**
