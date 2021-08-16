@@ -79,11 +79,6 @@ class Database {
         try {
             $this->setAttributes();
 
-            echo $this->HOST;
-            echo $this->NAME;
-            echo $this->USERNAME;
-            echo $this->PASSWORD;
-
             $this->connection = new PDO('mysql:host='.$this->HOST.';dbname='.$this->NAME, $this->USERNAME, $this->PASSWORD);
             
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -160,5 +155,24 @@ class Database {
 
         // Exectuar a Query
         return $this->execute($query);
+    }
+
+    /**
+     * Método responsável por executar atualizações do banco de dados
+     *
+     * @param   string $where   
+     * @param   array  $values ($field => value)
+     *
+     * @return  boolean
+     */
+    public function update($where, $values) {
+        // Dados da query
+        $fields = array_keys($values);
+        $binds = array_pad([], count($fields), '?');
+
+        $query = 'UPDATE ' . $this->table . ' SET '. implode('=?,', $fields).'=? WHERE ' . $where;
+
+        // Executar a Query
+        $this->execute($query, array_values($values));
     }
 }
