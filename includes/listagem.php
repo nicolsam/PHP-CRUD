@@ -38,28 +38,47 @@
 ?>
 
 <main class="p-2">
-    <section>
+    <section class="mb-2">
         <a href="cadastrar.php">
             <button class="btn btn-success">Nova vaga</button>
         </a>
     </section>
 
-    <section>
+    <section class="bg-dark rounded">
+        <section class="text-light p-2">
+            <form method="get">
+                <div class="row">
+                    <div class="col">
+                        <label class="mb-2" for="search-input">Buscar por título</label>
+                        <div class="d-flex">
+                            <div style="width:5%;border-radius: .25rem 0 0 .25rem;" class="d-flex justify-content-center align-items-center bg-light">
+                                <i class="fas fa-search fa-2x" style="color:black;"></i>
+                            </div>
+                            <input type="text" name="busca" id="search-input" class="form-control p-2" style="width:95%;border-radius: 0 .25rem .25rem 0;border:none;">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
 
-        <table class="table bg-dark text-light mt-3 ">
-            <thead>
-                <tr>
-                    <th class="text-center">ID</th>
-                    <th class="text-center">TITULO</th>
-                    <th class="text-center">DESCRIÇÃO</th>
-                    <th class="text-center">STATUS</th>
-                    <th class="text-center">DATA</th>
-                    <th class="text-center">AÇÕES</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?=$resultados?>
-            </tbody>
-        </table>
+        <section>
+
+            <table class="table bg-dark text-light mt-3 ">
+                <thead>
+                    <tr>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">TITULO</th>
+                        <th class="text-center">DESCRIÇÃO</th>
+                        <th class="text-center">STATUS</th>
+                        <th class="text-center">DATA</th>
+                        <th class="text-center">AÇÕES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?=$resultados?>
+                </tbody>
+            </table>
+        </section>
     </section>
+    
 </main>
