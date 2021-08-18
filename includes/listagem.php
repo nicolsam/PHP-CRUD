@@ -38,7 +38,7 @@
 ?>
 
 <main class="p-2">
-    <section class="mb-2">
+    <section class="mb-3">
         <a href="cadastrar.php">
             <button class="btn btn-success">Nova vaga</button>
         </a>
@@ -50,12 +50,10 @@
                 <div class="row">
                     <div class="col">
                         <label class="mb-2" for="search-input">Buscar por título</label>
-                        <div class="d-flex">
-                            <div style="width:5%;border-radius: .25rem 0 0 .25rem;" class="d-flex justify-content-center align-items-center bg-light">
-                                <i class="fas fa-search fa-2x" style="color:black;"></i>
-                            </div>
-                            <input type="text" name="busca" id="search-input" class="form-control p-2" style="width:95%;border-radius: 0 .25rem .25rem 0;border:none;">
-                        </div>
+                        <input type="text" name="busca" id="search-input" class="form-control p-2">
+                    </div>
+                    <div class="col d-flex align-items-end">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-search" style="font-size: 1.8rem !important;"></i></button>
                     </div>
                 </div>
             </form>
