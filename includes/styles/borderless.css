@@ -1,0 +1,5 @@
+button, button:focus, button:active, input:focus, input {
+    box-shadow: none !important;
+    border-color: none !important;
+    border: none !important;
+}
