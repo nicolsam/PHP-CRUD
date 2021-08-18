@@ -11,6 +11,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="includes/styles/borderless.css">
+    <link rel="stylesheet" href="includes/styles/lista.css">
+
     <title>qTrabalhos</title>
   </head>
   <body>
