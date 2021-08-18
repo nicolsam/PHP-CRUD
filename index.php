@@ -12,7 +12,16 @@ use \App\Entity\Vaga;
 // Busca
 $busca = filter_input(INPUT_GET, 'busca', FILTER_SANITIZE_STRING);
 
-$vagas = Vaga::getVagas();
+// Condições SQL
+$condicoes = [
+    strlen($busca) ? 'titulo LIKE "%'.$busca.'%"' : null
+];
+
+// Cláusula WHERE
+$where = implode(' AND ', $condicoes);
+
+// Obtendo Vagas
+$vagas = Vaga::getVagas($where);
 
 include __DIR__ . '/includes/header.php';
 include __DIR__ . '/includes/listagem.php';
