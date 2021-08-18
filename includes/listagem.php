@@ -5,7 +5,7 @@
         $resultados .= "<tr>
                             <td class='text-center'>".$vaga->id."</td>
                             <td class='text-center'>".$vaga->titulo."</td>
-                            <td class='text-center'>".$vaga->descricao."</td>
+                            <td id='description' class='text-center'>".$vaga->descricao."</td>
                             <td class='text-center'>".($vaga->status == 'sim' ? 'Ativo' : 'Inativo')."</td>
                             <td class='text-center'>".date('d/m/Y à\s H:i:s', strtotime($vaga->data))."</td>
                             <td class='text-center'>
@@ -50,7 +50,7 @@
                 <div class="row">
                     <div class="col">
                         <label class="mb-2" for="search-input">Buscar por título</label>
-                        <input type="text" name="busca" id="search-input" class="form-control p-2">
+                        <input type="text" name="busca" id="search-input" class="form-control p-2" value="<?=$busca?>">
                     </div>
                     <div class="col d-flex align-items-end">
                         <button type="submit" class="btn btn-primary"><i class="fas fa-search" style="font-size: 1.8rem !important;"></i></button>
