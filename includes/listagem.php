@@ -56,8 +56,8 @@
                         <label class="mb-2">Status</label>
                         <select name="status" class="form-select">
                             <option value="" selected>Ativa/Inativa</option>
-                            <option value="sim">Ativa</option>
-                            <option value="nao">Inativa</option>
+                            <option value="sim" <?=$filtroStatus == 'sim' ? 'selected' : ''; ?>>Ativa</option>
+                            <option value="nao" <?=$filtroStatus == 'nao' ? 'selected' : ''; ?>>Inativa</option>
                         </select>
                     </div>
                     <div class="col d-flex align-items-end">
