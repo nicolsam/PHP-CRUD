@@ -14,7 +14,7 @@ $busca = filter_input(INPUT_GET, 'busca', FILTER_SANITIZE_STRING);
 
 // Condições SQL
 $condicoes = [
-    strlen($busca) ? 'titulo LIKE "%'.$busca.'%"' : null
+    strlen($busca) ? 'titulo LIKE "%'.str_replace(' ', '%', $busca).'%"' : null
 ];
 
 // Cláusula WHERE
