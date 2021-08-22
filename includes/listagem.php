@@ -35,6 +35,14 @@
     $resultados = strlen($resultados) ? $resultados : "<tr>
                                                             <td colspan='6' class='text-center'>Nenhuma vaga foi encontrada!</td>
                                                         </tr>";
+
+    $paginacao = '';                                                        
+    $paginas = $obPagination->getPages();
+
+    foreach($paginas as $key => $pagina) {
+        $class = $pagina['atual'] ? 'btn-primary' : 'btn-dark';
+        $paginacao .= '<a href="?pagina='.$pagina['pagina'].'" class="me-1"><button type="button" class="btn '.$class.'">'.$pagina['pagina'].'</button></a>';
+    }
 ?>
 
 <main class="p-2">
@@ -85,6 +93,11 @@
                 </tbody>
             </table>
         </section>
+        
+    </section>
+
+    <section>
+        <?=$paginacao?>        
     </section>
     
 </main>
