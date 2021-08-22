@@ -12,10 +12,17 @@ use \App\Entity\Vaga;
 // Busca
 $busca = filter_input(INPUT_GET, 'busca', FILTER_SANITIZE_STRING);
 
+// Filtro STATUS
+$filtroStatus = filter_input(INPUT_GET, 'status', FILTER_SANITIZE_STRING);
+$filtroStatus = in_array($filtroStatus, ['sim', 'nao']) ? $filtroStatus : '';
+
 // Condições SQL
 $condicoes = [
-    strlen($busca) ? 'titulo LIKE "%'.str_replace(' ', '%', $busca).'%"' : null
+    strlen($busca) ? 'titulo LIKE "%'.str_replace(' ', '%', $busca).'%"' : null,
+    strlen($filtroStatus) ? 'status = "'.$filtroStatus.'"' : null
 ];
+
+$condicoes = array_filter($condicoes);
 
 // Cláusula WHERE
 $where = implode(' AND ', $condicoes);
