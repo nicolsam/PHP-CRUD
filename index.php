@@ -14,7 +14,7 @@ use \App\Db\Pagination;
 $busca = filter_input(INPUT_GET, 'busca', FILTER_SANITIZE_STRING);
 
 // Filtro STATUS
-$filtroStatus = filter_input(INPUT_GET, 'status', FILTER_SANITIZE_STRING);
+$filtroStatus = filter_input(INPUT_GET, 'filtroStatus', FILTER_SANITIZE_STRING);
 $filtroStatus = in_array($filtroStatus, ['sim', 'nao']) ? $filtroStatus : '';
 
 // Condições SQL

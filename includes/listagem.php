@@ -36,12 +36,17 @@
                                                             <td colspan='6' class='text-center'>Nenhuma vaga foi encontrada!</td>
                                                         </tr>";
 
+    
+    unset($_GET['status']);
+    unset($_GET['pagina']);
+    $gets = http_build_query($_GET);
+
     $paginacao = '';                                                        
     $paginas = $obPagination->getPages();
 
     foreach($paginas as $key => $pagina) {
         $class = $pagina['atual'] ? 'btn-primary' : 'btn-dark';
-        $paginacao .= '<a href="?pagina='.$pagina['pagina'].'" class="me-1"><button type="button" class="btn '.$class.'">'.$pagina['pagina'].'</button></a>';
+        $paginacao .= '<a href="?pagina='.$pagina['pagina'].'&'.$gets.'" class="me-1"><button type="button" class="btn '.$class.'">'.$pagina['pagina'].'</button></a>';
     }
 ?>
 
@@ -62,7 +67,7 @@
                     </div>
                     <div class="col ">
                         <label class="mb-2">Status</label>
-                        <select name="status" class="form-select">
+                        <select name="filtroStatus" class="form-select">
                             <option value="" selected>Ativa/Inativa</option>
                             <option value="sim" <?=$filtroStatus == 'sim' ? 'selected' : ''; ?>>Ativa</option>
                             <option value="nao" <?=$filtroStatus == 'nao' ? 'selected' : ''; ?>>Inativa</option>
