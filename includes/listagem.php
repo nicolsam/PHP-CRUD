@@ -52,8 +52,16 @@
                         <label class="mb-2" for="search-input">Buscar por título</label>
                         <input type="text" name="busca" id="search-input" class="form-control p-2" value="<?=$busca?>">
                     </div>
+                    <div class="col ">
+                        <label class="mb-2">Status</label>
+                        <select name="status" class="form-select">
+                            <option value="" selected>Ativa/Inativa</option>
+                            <option value="sim">Ativa</option>
+                            <option value="nao">Inativa</option>
+                        </select>
+                    </div>
                     <div class="col d-flex align-items-end">
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-search" style="font-size: 1.8rem !important;"></i></button>
+                        <button type="submit" class="btn btn-primary" style="width: 70px;"><i class="fas fa-search" style="font-size: 1.8rem !important;"></i></button>
                     </div>
                 </div>
             </form>
